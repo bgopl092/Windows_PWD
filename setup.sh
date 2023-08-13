@@ -1,4 +1,5 @@
 clear 
+cd /root
 echo "Go to: https://dashboard.ngrok.com/get-started/your-authtoken"
 read -p "Paste Ngrok Authtoken: " CRP
 echo "Setup is Starting...."
@@ -8,8 +9,9 @@ apt install qemu qemu-utils ovmf -y
 apt install qemu-kvm -y
 wget 'https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz'
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=12BH0hs3hgpxV5W3xcHWCQJw-4dpLLpra' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=12BH0hs3hgpxV5W3xcHWCQJw-4dpLLpra" -O windows.tar.xz && rm -rf /tmp/cookies.txt
-tar xzf windows.tar.gz -C /root
-tar xvzf ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin
+tar xvzf windows.tar.gz -C /root
+tar xvzf ngrok-v3-stable-linux-amd64.tgz -C /root
+rm -rfv windows.tar.gz ngrok-v3-stable-linux-amd64.tgz
 ngrok config add-authtoken $CRP
 echo "Repo: https://github.com/bgopl092/Windows_PWD"
 echo "======================="
