@@ -7,7 +7,7 @@ apt upgrade -y
 apt install qemu qemu-utils ovmf -y
 apt install qemu-kvm -y
 wget 'https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz'
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=12BH0hs3hgpxV5W3xcHWCQJw-4dpLLpra' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=12BH0hs3hgpxV5W3xcHWCQJw-4dpLLpra" -O cdrom.iso && rm -rf /tmp/cookies.txt
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=12BH0hs3hgpxV5W3xcHWCQJw-4dpLLpra' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=12BH0hs3hgpxV5W3xcHWCQJw-4dpLLpra" -O windows.tar.xz && rm -rf /tmp/cookies.txt
 tar xzf windows.tar.gz -C /root
 tar xvzf ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin
 ngrok config add-authtoken $CRP
