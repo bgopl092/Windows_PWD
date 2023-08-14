@@ -12,7 +12,8 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 tar xvzf windows.tar.gz -C /root
 tar xvzf ngrok-v3-stable-linux-amd64.tgz -C /root
 rm -rfv windows.tar.gz ngrok-v3-stable-linux-amd64.tgz
-ngrok config add-authtoken $CRP
+chmod +x ngrok
+./ngrok config add-authtoken $CRP
 echo "Repo: https://github.com/bgopl092/Windows_PWD"
 echo "================================================"
 echo "Choose ngrok region (for better connection)."
