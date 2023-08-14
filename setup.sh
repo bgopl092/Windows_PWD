@@ -14,9 +14,9 @@ tar xvzf ngrok-v3-stable-linux-amd64.tgz -C /root
 rm -rfv windows.tar.gz ngrok-v3-stable-linux-amd64.tgz
 ngrok config add-authtoken $CRP
 echo "Repo: https://github.com/bgopl092/Windows_PWD"
-echo "======================="
-echo "choose ngrok region (for better connection)."
-echo "======================="
+echo "================================================"
+echo "Choose ngrok region (for better connection)."
+echo "================================================"
 echo "us - United States (Ohio)"
 echo "eu - Europe (Frankfurt)"
 echo "ap - Asia/Pacific (Singapore)"
@@ -24,7 +24,7 @@ echo "au - Australia (Sydney)"
 echo "sa - South America (Sao Paulo)"
 echo "jp - Japan (Tokyo)"
 echo "in - India (Mumbai)"
-read -p "choose ngrok region: " CRP
+read -p "Choose ngrok region: " CRP
 ngrok tcp --region $CRP 3389 &>/dev/null &
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
@@ -34,7 +34,7 @@ echo User: PlayWithDocker
 echo Passwd: PWDLtsc1989
 qemu-system-x86_64 \
 -m 12G \
--cpu host+nx,vmx=off \
+-cpu host,+nx,vmx=off \
 -enable-kvm \
 -drive file=/home/vscode/disk.img,media=disk,format=raw,if=virtio,cache=none,aio=native \
 -device usb-ehci,id=usb \
