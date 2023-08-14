@@ -7,7 +7,7 @@ apt update -y
 apt upgrade -y
 apt install qemu qemu-utils ovmf curl -y
 apt install qemu-kvm -y
-docker run -it -e NGROK_AUTHTOKEN=CRP ngrok/ngrok tcp 3389 > /dev/null 2>&1
+docker run -it -e NGROK_AUTHTOKEN=$CRP ngrok/ngrok tcp 3389 > /dev/null 2>&1
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1CClaOwHCfatYDbgYmX0r_TmDxlQOq7il' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1CClaOwHCfatYDbgYmX0r_TmDxlQOq7il" -O windows.tar.xz && rm -rf /tmp/cookies.txt
 tar xvzf windows.tar.xz -C /root
 rm -rfv windows.tar.xz
