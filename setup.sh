@@ -10,10 +10,9 @@ apt install qemu-kvm -y
 wget 'https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz'
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1CClaOwHCfatYDbgYmX0r_TmDxlQOq7il' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1CClaOwHCfatYDbgYmX0r_TmDxlQOq7il" -O windows.tar.xz && rm -rf /tmp/cookies.txt
 tar xvzf windows.tar.xz -C /root
-tar xvzf ngrok-v3-stable-linux-amd64.tgz -C /root
+tar xvzf ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin
 rm -rfv windows.tar.xz ngrok-v3-stable-linux-amd64.tgz
-chmod +x ngrok
-./ngrok config add-authtoken $CRP
+ngrok config add-authtoken $CRP
 echo "Repo: https://github.com/bgopl092/Windows_PWD"
 echo "================================================"
 echo "Choose ngrok region (for better connection)."
@@ -37,7 +36,7 @@ qemu-system-x86_64 \
 -m 12G \
 -cpu host,+nx,vmx=on \
 -enable-kvm \
--drive file=/root/disk.img,media=disk,format=raw,if=virtio,cache=none,aio=native \
+-drive file=/root/disk.qcow2,media=disk,format=raw,if=virtio,cache=none,aio=native \
 -device usb-ehci,id=usb \
 -device usb-tablet \
 -smp 4 \
