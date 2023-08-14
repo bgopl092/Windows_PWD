@@ -37,7 +37,7 @@ qemu-system-x86_64 \
 -m 12G \
 -cpu host,+nx,vmx=on \
 -enable-kvm \
--drive file=/home/vscode/disk.img,media=disk,format=raw,if=virtio,cache=none,aio=native \
+-drive file=/root/disk.img,media=disk,format=raw,if=virtio,cache=none,aio=native \
 -device usb-ehci,id=usb \
 -device usb-tablet \
 -smp 4 \
