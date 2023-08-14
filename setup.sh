@@ -13,7 +13,7 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 tar xvzf windows.tar.xz -C /root
 rm -rfv windows.tar.xz
 sleep 1
-ngrok tcp 3389 >/dev/null
+ngrok tcp 3389 &> /dev/null &
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
