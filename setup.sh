@@ -7,13 +7,20 @@ apt update -y
 apt upgrade -y
 apt install qemu qemu-utils ovmf curl -y
 apt install qemu-kvm -y
-curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | tee /etc/apt/sources.list.d/ngrok.list && apt update && apt install ngrok
 ngrok config add-authtoken $CRP
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1CClaOwHCfatYDbgYmX0r_TmDxlQOq7il' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1CClaOwHCfatYDbgYmX0r_TmDxlQOq7il" -O windows.tar.xz && rm -rf /tmp/cookies.txt
-tar -xvf windows.tar.xz -C /root
-rm -rfv windows.tar.xz
 sleep 1
-ngrok tcp 3389 &> /dev/null &
+echo "======================="
+echo "choose ngrok region (for better connection)."
+echo "======================="
+echo "us - United States (Ohio)"
+echo "eu - Europe (Frankfurt)"
+echo "ap - Asia/Pacific (Singapore)"
+echo "au - Australia (Sydney)"
+echo "sa - South America (Sao Paulo)"
+echo "jp - Japan (Tokyo)"
+echo "in - India (Mumbai)"
+read -p "choose ngrok region: " CRD
+ngrok tcp --region $CRD 3389 &>/dev/null &
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
